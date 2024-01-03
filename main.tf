@@ -10,34 +10,34 @@ locals {
   containers_master = [
     {
       name         = "container-${var.env}-k3s-m1"
-      ipv4_address = "10.0.30.51"
+      ipv4_address = "10.30.0.51"
       profiles     = local.container_profiles
     },
     {
       name         = "container-${var.env}-k3s-m2"
-      ipv4_address = "10.0.30.52"
+      ipv4_address = "10.30.0.52"
       profiles     = local.container_profiles
     },
     {
       name         = "container-${var.env}-k3s-m3"
-      ipv4_address = "10.0.30.53"
+      ipv4_address = "10.30.0.53"
       profiles     = local.container_profiles
     }
   ]
   containers_worker = [
     {
       name         = "container-${var.env}-k3s-w1"
-      ipv4_address = "10.0.30.54"
+      ipv4_address = "10.30.0.54"
       profiles     = local.container_profiles
     },
     {
       name         = "container-${var.env}-k3s-w2"
-      ipv4_address = "10.0.30.55"
+      ipv4_address = "10.30.0.55"
       profiles     = local.container_profiles
     },
     {
       name         = "container-${var.env}-k3s-w3"
-      ipv4_address = "10.0.30.56"
+      ipv4_address = "10.30.0.56"
       profiles     = local.container_profiles
     }
   ]
@@ -53,8 +53,8 @@ module "lxd_k3s_cluster" {
   swarm_private_key = var.swarm_private_key
   cluster_domain    = local.cluster_domain
   nicparent         = "${var.env}-network"
-  cidr_pods         = "10.31.0.0/16"
-  cidr_services     = "10.32.0.0/16"
+  cidr_pods         = "10.30.1.0/22"
+  cidr_services     = "10.30.5.0/22"
   containers_master = local.containers_master
   containers_worker = local.containers_worker
   autostart         = true
